@@ -61,7 +61,7 @@ readonly SNAPSHOT_DESCRIPTION=$(get_property "$CONF_FILE" "snapshotDescription" 
 
 timeshift --create --comments "$SNAPSHOT_DESCRIPTION" || { echo "Unable to run timeshift-autosnap-apt! Please close Timeshift and try again. Script will now exit..." >&2; exit 1; }
 
-echo "lastSnapshot=$(date +"%s")" > /var/run/timeshift-autosnap-apt-timestamp
+echo "lastSnapshot=$(date +"%s")" > "$TIMESTAMP_FILE"
 
 if $(get_property "$CONF_FILE" "deleteSnapshots" "boolean" "true") ; then
     timeshift --list > $SNAPSHOTS_TO_DELETE
